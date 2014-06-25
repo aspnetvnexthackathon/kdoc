@@ -1,5 +1,4 @@
 ﻿using System;
-using kdoc.Model;
 using Microsoft.AspNet.Mvc;
 
 namespace DefaultSiteTemplate

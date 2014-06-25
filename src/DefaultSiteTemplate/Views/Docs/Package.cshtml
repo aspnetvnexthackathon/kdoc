@@ -1,4 +1,5 @@
-﻿@model kdoc.Model.DocPackage
+﻿@using kdoc.Model
+@model DocPackage
 
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
@@ -11,8 +12,17 @@
             <h1>@Model.Name</h1>
             <p class="lead">@Model.Summary</p>
         </div>
-        <div class="col-lg-6" style="padding: 15px 15px 0 15px;">
-            
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Assemblies</h2>
+            <ul>
+                @foreach (var a in Model.Assemblies)
+                {
+                    <li><a href="@DocUrlHelper.Url(a.DocId)">@a.Name</a></li>
+                }
+            </ul>
         </div>
     </div>
 </div>
