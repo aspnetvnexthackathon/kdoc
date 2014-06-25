@@ -20,7 +20,7 @@ namespace SampleLib
         /// </summary>
         /// <param name="name">The name of the person to say hello to.</param>
         /// <returns>The hello message.</returns>
-        /// <example ref="SetupUsefulThing\SayHello.md" />
+        /// <example ref="docs\apiref\SampleLib\SetupUsefulThing.SayHello.md" />
         public string SayHello(string name)
         {
             return string.Format("Hello {0}", name);
