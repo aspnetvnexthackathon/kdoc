@@ -1,0 +1,22 @@
+﻿{
+    "dependencies": {
+    },
+
+    "version": "0.1.0",
+
+    "configurations" : {
+        "net45" : { 
+            "dependencies": {
+            }
+        },
+        "k10" : { 
+            "dependencies": {
+                "System.Console": "4.0.0.0",
+                "System.Collections": "4.0.0.0",
+                "System.Runtime": "4.0.20.0",
+                "System.Runtime.Extensions": "4.0.10.0",
+                "System.Text.RegularExpressions": "4.0.0.0"
+            }
+        }
+    }
+}
