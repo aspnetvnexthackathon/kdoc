@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace kdoc
+namespace kdoc.Model
 {
     public class DocAssembly : DocNode
     {
         public ICollection<DocNamespace> Namespaces { get; private set; }
 
-        public DocAssembly(string name) : base(name)
+        public DocAssembly(string docId, string name) : base(docId, name)
         {
             Namespaces = new List<DocNamespace>();
         }

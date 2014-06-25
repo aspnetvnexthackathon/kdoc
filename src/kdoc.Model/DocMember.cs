@@ -1,13 +1,11 @@
-﻿namespace kdoc
+﻿namespace kdoc.Model
 {
-    public abstract class DocMember
+    public abstract class DocMember : DocNode
     {
-        public string Name { get; private set; }
         public DocMemberKind MemberKind { get; private set; }
 
-        protected DocMember(string name, DocMemberKind kind)
+        protected DocMember(string docId, string name, DocMemberKind kind) : base(docId, name)
         {
-            Name = name;
             MemberKind = kind;
         }
     }

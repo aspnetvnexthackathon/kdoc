@@ -25,6 +25,7 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DocModelBuilder.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

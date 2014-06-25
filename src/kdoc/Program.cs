@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using kdoc.Model;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.Framework.Runtime;
@@ -25,13 +27,22 @@ namespace kdoc
 
         public void Main(string[] args)
         {
+            // Build the model here
+            var model = BuildDocModel();
+
+            Console.ReadLine();
+        }
+
+        private DocPackage BuildDocModel()
+        {
             var compiler = new RoslynCompiler(_resolver, NoopWatcher.Instance, _exportProvider);
             var compilationContext = compiler.CompileProject(_appEnvironment.ApplicationName, _appEnvironment.TargetFramework);
 
-            // Build the model here
-            // compilationContext.Compilation.GlobalNamespace.Accept();
+            var package = new DocPackage("P:" + _appEnvironment.ApplicationName, _appEnvironment.ApplicationName);
+            compilationContext.Compilation.Assembly.Accept(
+                new DocModelBuilder(package));
 
-            Console.ReadLine();
+            return package;
         }
     }
 }

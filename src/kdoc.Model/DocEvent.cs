@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace kdoc.models
+namespace kdoc.Model
 {
     public class DocEvent : DocMember
     {
         public string Type { get; private set; }
 
-        public DocEvent(string name, string type) : base(name, DocMemberKind.Event)
+        public DocEvent(string docId, string name, string type) : base(docId, name, DocMemberKind.Event)
         {
             Type = type;
         }

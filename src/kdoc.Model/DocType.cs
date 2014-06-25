@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace kdoc
+namespace kdoc.Model
 {
     public class DocType : DocMember
     {
         public DocTypeKind TypeKind { get; private set; }
         public ICollection<DocMember> Members { get; private set; }
 
-        public DocType(string name, DocTypeKind typeKind) : base(name, DocMemberKind.Type)
+        public DocType(string docId, string name, DocTypeKind typeKind) : base(docId, name, DocMemberKind.Type)
         {
             TypeKind = typeKind;
             Members = new List<DocMember>();
