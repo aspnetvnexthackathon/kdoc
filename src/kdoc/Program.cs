@@ -52,7 +52,7 @@ namespace kdoc
             var compilationContext = compiler.CompileProject(_appEnvironment.ApplicationName, _appEnvironment.TargetFramework);
 
             var model = new DocModel();
-            var package = new DocPackage("P:" + _appEnvironment.ApplicationName, _appEnvironment.ApplicationName);
+            var package = new DocPackage("Pk:" + _appEnvironment.ApplicationName, _appEnvironment.ApplicationName);
             model.Packages.Add(package);
             compilationContext.Compilation.Assembly.Accept(
                 new DocModelBuilder(model, package));

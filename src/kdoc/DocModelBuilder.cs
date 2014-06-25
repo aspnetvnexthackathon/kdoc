@@ -27,6 +27,7 @@ namespace kdoc
             var asm = new DocAssembly(docId, symbol.Name);
 
             _package.Assemblies.Add(asm);
+            asm.Parent = _package;
 
             var oldAsm = _asm;
             _asm = asm;
@@ -41,6 +42,7 @@ namespace kdoc
             _model.Add(ns);
 
             _asm.Namespaces.Add(ns);
+            ns.Parent = _asm;
 
             // Visit types
             var oldNs = _ns;
@@ -65,6 +67,7 @@ namespace kdoc
             typ.MergeXml(TryLoadDocXml(symbol));
             _model.Add(typ);
             _ns.Types.Add(typ);
+            typ.Parent = _ns;
 
             // Visit members
             var oldTyp = _typ;
@@ -99,10 +102,12 @@ namespace kdoc
                     {
                         set.Overloads.Add(method);
                         typ.Members.Remove(method);
+                        method.Parent = set;
                     }
 
                     _model.Add(set);
                     typ.Members.Add(set);
+                    set.Parent = typ;
                 }
             }
         }
@@ -122,6 +127,7 @@ namespace kdoc
             method.MergeXml(TryLoadDocXml(symbol));
             _model.Add(method);
             _typ.Members.Add(method);
+            method.Parent = _typ;
 
             var oldMet = _met;
             _met = method;
@@ -141,6 +147,7 @@ namespace kdoc
             evt.MergeXml(TryLoadDocXml(symbol));
             _typ.Members.Add(evt);
             _model.Add(evt);
+            evt.Parent = _typ;
         }
 
         public override void VisitField(IFieldSymbol symbol)
@@ -152,6 +159,7 @@ namespace kdoc
             field.MergeXml(TryLoadDocXml(symbol));
             _typ.Members.Add(field);
             _model.Add(field);
+            field.Parent = _typ;
         }
 
         public override void VisitProperty(IPropertySymbol symbol)
@@ -163,6 +171,7 @@ namespace kdoc
             prop.MergeXml(TryLoadDocXml(symbol));
             _typ.Members.Add(prop);
             _model.Add(prop);
+            prop.Parent = _typ;
         }
 
         public override void VisitParameter(IParameterSymbol symbol)
@@ -175,6 +184,7 @@ namespace kdoc
             parm.MergeXml(TryLoadDocXml(symbol));
             _met.Parameters.Add(parm);
             _model.Add(parm);
+            parm.Parent = _met;
         }
 
         private XElement TryLoadDocXml(ISymbol symbol)
