@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{DA9B
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "kmarkdown", "src\kmarkdown\kmarkdown.kproj", "{8DFDBB90-07C5-4BF3-A265-6F878B8D8AA5}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DefaultSiteTemplate", "DefaultSiteTemplate\DefaultSiteTemplate.kproj", "{7DC3B456-6BE7-412A-98EA-D968967E2D33}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DefaultSiteTemplate", "src\DefaultSiteTemplate\DefaultSiteTemplate.kproj", "{7DC3B456-6BE7-412A-98EA-D968967E2D33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
