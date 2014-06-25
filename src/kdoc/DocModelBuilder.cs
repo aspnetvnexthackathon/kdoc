@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 using kdoc.Model;
 using Microsoft.CodeAnalysis;
 
@@ -56,7 +57,10 @@ namespace kdoc
             var typ = new DocType(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
-                kind);
+                kind)
+            {
+                DocXml = TryLoadDocXml(symbol)
+            };
             _ns.Types.Add(typ);
 
             // Visit members
@@ -71,7 +75,19 @@ namespace kdoc
 
         public override void VisitMethod(IMethodSymbol symbol)
         {
-            var method = new DocMethod(symbol.GetDocumentationCommentId(), symbol.Name);
+            if (symbol.MethodKind != MethodKind.Constructor &&
+                symbol.MethodKind != MethodKind.DeclareMethod &&
+                symbol.MethodKind != MethodKind.Destructor &&
+                symbol.MethodKind != MethodKind.SharedConstructor &&
+                symbol.MethodKind != MethodKind.StaticConstructor)
+            {
+                return;
+            }
+
+            var method = new DocMethod(symbol.GetDocumentationCommentId(), symbol.Name)
+            {
+                DocXml = TryLoadDocXml(symbol)
+            };
             _typ.Members.Add(method);
 
             var oldMet = _met;
@@ -88,7 +104,10 @@ namespace kdoc
             _typ.Members.Add(new DocEvent(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
-                symbol.Type.Name));
+                symbol.Type.GetDocumentationCommentId())
+            {
+                DocXml = TryLoadDocXml(symbol)
+            });
         }
 
         public override void VisitField(IFieldSymbol symbol)
@@ -96,7 +115,10 @@ namespace kdoc
             _typ.Members.Add(new DocField(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
-                symbol.Type.Name));
+                symbol.Type.GetDocumentationCommentId())
+            {
+                DocXml = TryLoadDocXml(symbol)
+            });
         }
 
         public override void VisitProperty(IPropertySymbol symbol)
@@ -104,7 +126,10 @@ namespace kdoc
             _typ.Members.Add(new DocProperty(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
-                symbol.Type.Name));
+                symbol.Type.GetDocumentationCommentId())
+            {
+                DocXml = TryLoadDocXml(symbol)
+            });
         }
 
         public override void VisitParameter(IParameterSymbol symbol)
@@ -113,7 +138,18 @@ namespace kdoc
             _met.Parameters.Add(new DocParameter(
                 docId,
                 symbol.Name,
-                symbol.Type.Name));
+                symbol.Type.GetDocumentationCommentId())
+            {
+                DocXml = TryLoadDocXml(symbol)
+            });
+        }
+
+        private XElement TryLoadDocXml(ISymbol symbol)
+        {
+            string xml = symbol.GetDocumentationCommentXml();
+            return String.IsNullOrEmpty(xml) ?
+                (XElement)null :
+                XElement.Parse(xml);
         }
 
         private bool TryMapTypeKind(TypeKind typeKind, out DocTypeKind kind)

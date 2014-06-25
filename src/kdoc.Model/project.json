@@ -5,6 +5,7 @@
     "configurations" : {
         "net451" : { 
             "dependencies": {
+                "System.Xml.Linq" :  ""
             }
         },
         "k10" : { 

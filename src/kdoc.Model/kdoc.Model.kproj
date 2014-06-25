@@ -12,7 +12,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>97491b45-123a-464a-a739-ccfb2b1f3d92</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>kdoc.models</RootNamespace>
+    <RootNamespace>kdoc.Model</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="$(OutputType) == 'Console'">
     <DebuggerFlavor>ConsoleDebugger</DebuggerFlavor>

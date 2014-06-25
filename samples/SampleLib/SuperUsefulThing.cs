@@ -7,10 +7,19 @@ namespace SampleLib
     /// </summary>
     public class SuperUsefulThing
     {
+        public event HelloSayEventHandler OnSaidHello;
+
+        public bool Enabled
+        {
+            get { return false; }
+        }
+
+        public delegate void HelloSayEventHandler(object sender, EventArgs args);
+
         /// <summary>
         /// Creates a new SuperUsefulThing.
         /// </summary>
-        public SuperUsefulThing()
+            public SuperUsefulThing()
         {
             Salutation = "Hello";
         }

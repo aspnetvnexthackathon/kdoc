@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace kdoc.Model
 {
@@ -9,6 +10,7 @@ namespace kdoc.Model
         public string Summary { get; set; }
         public string Remarks { get; set; }
         public string Examples { get; set; }
+        public XElement DocXml { get; set; }
 
         protected DocNode(string docId, string name)
         {
