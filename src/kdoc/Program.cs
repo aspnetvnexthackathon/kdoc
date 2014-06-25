@@ -14,16 +14,19 @@ namespace kdoc
     public class Program
     {
         private readonly IApplicationEnvironment _appEnvironment;
-        private IServiceProvider _serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly ILibraryManager _libraryManager;
         private readonly ILibraryExportProvider _exportProvider;
         private readonly IProjectResolver _resolver;
 
         public Program(IApplicationEnvironment appEnvironment, 
+                       ILibraryManager libraryManager,
                        ILibraryExportProvider exportProvider,
                        IProjectResolver resolver,
 					   IServiceProvider serviceProvider)
         {
             _appEnvironment = appEnvironment;
+            _libraryManager = libraryManager;
             _serviceProvider = serviceProvider;
             _exportProvider = exportProvider;
             _resolver = resolver;
@@ -34,30 +37,15 @@ namespace kdoc
             // Build the model here
             var model = BuildDocModel();
 
+            string outputPath = Path.Combine(_appEnvironment.ApplicationBasePath, "docs");
+
+            var pageGenerator = new PageGenerator(_serviceProvider, _libraryManager, _appEnvironment);
+            pageGenerator.GenerateSite(outputPath);
+
             Console.ReadLine();
         }
 
-        public async void RunTemplateSite()
-        {
-            var defaultConfig = new Dictionary<string, string>();
-
-            //Replace the IApplicationEnvironment to point to the template site
-            FakeApplicationEnvironment newEnv = FakeApplicationEnvironment.Create(_appEnvironment);
-            newEnv.ApplicationBasePath = Path.GetFullPath(@"..\..\src\DefaultSiteTemplate");
-            newEnv.ApplicationName = "DefaultSiteTemplate";
-
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.AddInstance<IApplicationEnvironment>(newEnv);
-            _serviceProvider = serviceCollection.BuildServiceProvider(_serviceProvider);
-
-            //All CreateServices is doing really is setting the ApplicationEnvironment to have paths that MVC expect.
-            var testServer = TestServer.Create(_serviceProvider, new DefaultSiteTemplate.Startup().Configure);
-            var testClient = testServer.Handler;
-            var value = await testClient.GetAsync(@"http://localhost/");
-            var result = await value.ReadBodyAsStringAsync();
-            Console.WriteLine(result);
-        }
-        private DocModel BuildDocModel()
+        private DocPackage BuildDocModel()
         {
             var compiler = new RoslynCompiler(_resolver, NoopWatcher.Instance, _exportProvider);
             var compilationContext = compiler.CompileProject(_appEnvironment.ApplicationName, _appEnvironment.TargetFramework);

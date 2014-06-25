@@ -7,7 +7,7 @@ namespace kdoc
     /// <summary>
     /// Summary description for FakeApplicationEnvironment
     /// </summary>
-    public class FakeApplicationEnvironment : IApplicationEnvironment
+    public class ApplicationEnvironment : IApplicationEnvironment
     {
         public string ApplicationBasePath{get; set;}
 
@@ -17,9 +17,9 @@ namespace kdoc
 
         public string Version { get; set; }
 
-        public static FakeApplicationEnvironment Create(IApplicationEnvironment env)
+        public static ApplicationEnvironment Create(IApplicationEnvironment env)
         {
-            return new FakeApplicationEnvironment
+            return new ApplicationEnvironment
             {
                 ApplicationBasePath = env.ApplicationBasePath,
                 ApplicationName = env.ApplicationName,

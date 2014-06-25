@@ -29,6 +29,7 @@
     <Compile Include="IDocModelProvider.cs" />
     <Compile Include="NullLogger.cs" />
     <Compile Include="DocModelBuilder.cs" />
+    <Compile Include="PageGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="HttpHelpers.cs" />
   </ItemGroup>
