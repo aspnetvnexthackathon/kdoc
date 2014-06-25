@@ -12,8 +12,13 @@ namespace SampleLib
         /// </summary>
         public SuperUsefulThing()
         {
-
+            Salutation = "Hello";
         }
+
+        /// <summary>
+        /// The greeting to use when saying hello.
+        /// </summary>
+        public string Salutation { get; set; }
 
         /// <summary>
         /// Says 'Hello'.
@@ -23,7 +28,7 @@ namespace SampleLib
         /// <example ref="docs\apiref\SampleLib\SetupUsefulThing.SayHello.md" />
         public string SayHello(string name)
         {
-            return string.Format("Hello {0}", name);
+            return string.Format("{0} {1}", Salutation, name);
         }
     }
 }
