@@ -1,12 +1,17 @@
 ﻿{
     "dependencies": {
+        "Microsoft.Framework.Runtime.Interfaces": "1.0.0-*",
+        "K.Roslyn": "1.0.0-*"
+        "DefaultSiteTemplate" : "",
+        "Microsoft.AspNet.TestHost": "1.0.0-*",
+        "K.Roslyn": "1.0.0-*"
         "Microsoft.Framework.Runtime.Roslyn": "1.0.0-*",
         "kdoc.Model": ""
     },
 
     "configurations" : {
         "net45" : { },
-        "k10" : { 
+        "k10": {
             "dependencies": {
                 "System.Console": "4.0.0.0"
             }

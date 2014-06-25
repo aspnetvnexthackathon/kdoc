@@ -25,8 +25,11 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FakeApplicationEnvironment.cs" />
+    <Compile Include="NullLogger.cs" />
     <Compile Include="DocModelBuilder.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="HttpHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="project.json" />
