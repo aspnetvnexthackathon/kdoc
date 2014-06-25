@@ -5,17 +5,17 @@
     "configurations" : {
         "net451" : { 
             "dependencies": {
+                "System.Linq": "",
                 "System.Xml": "",
-                "System.Xml.Linq" :  "",
-                "System.Linq": ""
+                "System.Xml.Linq": ""
             }
         },
         "k10" : { 
             "dependencies": {
                 "System.Collections": "4.0.0.0",
+                "System.Linq": "4.0.0.0",
                 "System.Runtime": "4.0.20.0",
-                "System.Xml.XDocument": "4.0.0.0",
-                "System.Linq": "4.0.0.0"
+                "System.Xml.XDocument": "4.0.0.0"
             }
         }
     }
