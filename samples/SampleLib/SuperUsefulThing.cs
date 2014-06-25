@@ -7,15 +7,6 @@ namespace SampleLib
     /// </summary>
     public class SuperUsefulThing
     {
-        public event HelloSayEventHandler OnSaidHello;
-
-        public bool Enabled
-        {
-            get { return false; }
-        }
-
-        public delegate void HelloSayEventHandler(object sender, EventArgs args);
-
         /// <summary>
         /// The default salutation.
         /// </summary>

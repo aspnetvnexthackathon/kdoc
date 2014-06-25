@@ -1,0 +1,18 @@
+﻿@using kdoc.Model
+@model DocEvent
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Name;
+}
+
+<div class="page-header" id="banner">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>@Model.Name</h1>
+            <p class="lead">@Model.Summary</p>
+        </div>
+    </div>
+
+    TODO: Figure out what to show for an Event, e.g. delegate params
+</div>

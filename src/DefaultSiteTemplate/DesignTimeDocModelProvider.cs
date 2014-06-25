@@ -8,34 +8,39 @@ namespace DefaultSiteTemplate
     {
         private readonly Lazy<DocPackage> _samplePackage = new Lazy<DocPackage>(() =>
         {
-            var package = new DocPackage("SamplePackage", "Sample Package Name")
+            var package = new DocPackage("P:SamplePackage", "Sample Package Name")
             {
                 Summary = "A sample summary for the package."
             };
 
-            var assembly = new DocAssembly("SamplePackage.SampleAssembly", "SampleAssembly")
+            var assembly = new DocAssembly("A:SamplePackage.SampleAssembly", "SampleAssembly")
             {
                 Summary = "A sample summary for the assembly."
             };
 
-            var sampleNs = new DocNamespace("SamplePackage.SampleAssembly.SampleNamespace", "SampleNamespace")
+            var sampleNs = new DocNamespace("N:SamplePackage.SampleAssembly.SampleNamespace", "SampleNamespace")
             {
                 Summary = "A sample summary for the namespace."
             };
 
-            var sampleClass = new DocType("SamplePackage.SampleAssembly.SampleClass", "SampleClass", DocTypeKind.Class)
+            var sampleClass = new DocType("T:SamplePackage.SampleAssembly.SampleClass", "SampleClass", DocTypeKind.Class)
             {
                 Summary = "A sample summary for the class."
             };
 
-            var sampleMethod = new DocMethod("SamplePackage.SampleAssembly.SampleClass.SampleMethod", "SampleMethod")
+            var sampleMethod = new DocMethod("M:SamplePackage.SampleAssembly.SampleClass.SampleMethod", "SampleMethod")
             {
                 Summary = "A sample summary for the method."
             };
 
-            var sampleProperty = new DocProperty("SamplePackage.SampleAssembly.SampleClass.SampleProperty", "SampleProperty", "System.String")
+            var sampleProperty = new DocProperty("P:SamplePackage.SampleAssembly.SampleClass.SampleProperty", "SampleProperty", "System.String")
             {
                 Summary = "A sample summary for the property."
+            };
+
+            var sampleEvent = new DocEvent("E:SamplePackage.SampleAssembly.SampleClass.SampleEvent", "SampleEvent", "System.EventHandler")
+            {
+                Summary = "A sample summary for the event."
             };
 
             sampleClass.Members.Add(sampleMethod);

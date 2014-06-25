@@ -1,5 +1,5 @@
 ﻿@using kdoc.Model
-@model DocMethod
+@model DocType
 
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
@@ -16,11 +16,11 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <h2>Parameters</h2>
+            <h2>Values</h2>
             <ul>
-                @foreach (var p in Model.Parameters)
+                @foreach (var m in Model.Members)
                 {
-                <li><a href="@DocUrlHelper.Url(a.DocId)">@p.Name</a></li>
+                <li><a href="@DocUrlHelper.Url(a.DocId)">@m.Name</a></li>
                 }
             </ul>
         </div>
