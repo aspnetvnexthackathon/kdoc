@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using DefaultSiteTemplate;
+using kdoc.Model;
 using Microsoft.AspNet.TestHost;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.DependencyInjection.Fallback;
@@ -14,11 +16,15 @@ namespace kdoc
     public class PageGenerator
     {
         private readonly TestClient _client;
+        private readonly DocModel _model;
 
-        public PageGenerator(IServiceProvider hostServiceProvider,
+        public PageGenerator(DocModel model, 
+                             IServiceProvider hostServiceProvider,
                              ILibraryManager libraryManager, 
                              IApplicationEnvironment appEnv)
         {
+            _model = model;
+
             var defaultSite = libraryManager.GetLibraryInformation("DefaultSiteTemplate");
 
             // Replace the IApplicationEnvironment to point to the template site
@@ -29,6 +35,7 @@ namespace kdoc
 
             var serviceProvider = new ServiceCollection()
                                         .AddInstance<IApplicationEnvironment>(env)
+                                        .AddInstance<IDocModelProvider>(new DocModelProvider(model))
                                         .BuildServiceProvider(hostServiceProvider);
 
             var startup = new DefaultSiteTemplate.Startup();
@@ -40,7 +47,11 @@ namespace kdoc
 
         public async Task GenerateSite(string outputPath)
         {
-            var result = await _client.GetStringAsync("http://localhost");
+            foreach (var package in _model.Packages)
+            {
+                var result = await _client.GetStringAsync("http://localhost/?docId=" + package.DocId + "&templateName=Package");
+            }
+            
         }
     }
 }

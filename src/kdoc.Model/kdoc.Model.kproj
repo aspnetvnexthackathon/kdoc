@@ -26,7 +26,6 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="DocNode.cs.orig" />
     <Content Include="project.json" />
   </ItemGroup>
   <ItemGroup>
