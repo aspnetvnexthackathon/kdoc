@@ -3,6 +3,10 @@
         "kdoc": ""
     },
 
+    "commands": {
+        "doc" :  "kdoc"
+    },
+
     "configurations" : {
         "net45" : { 
             "dependencies": {
