@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace kdoc.Model
@@ -10,12 +11,35 @@ namespace kdoc.Model
         public string Summary { get; set; }
         public string Remarks { get; set; }
         public string Examples { get; set; }
-        public XElement DocXml { get; set; }
+        public XElement DocXml { get; private set; }
 
         protected DocNode(string docId, string name)
         {
             DocId = docId;
             Name = name;
+        }
+
+        public void MergeXml(XElement docXml)
+        {
+            DocXml = docXml;
+
+            var summary = docXml.Descendants(XName.Get("summary")).FirstOrDefault();
+            if (summary != null)
+            {
+                Summary = summary.Value.Trim();
+            }
+
+            var remarks = docXml.Descendants(XName.Get("remarks")).FirstOrDefault();
+            if (remarks != null)
+            {
+                Remarks = remarks.Value.Trim();
+            }
+
+            var examples = docXml.Descendants(XName.Get("example")).FirstOrDefault();
+            if (examples != null)
+            {
+                Examples = examples.Value.Trim();
+            }
         }
     }
 }

@@ -60,10 +60,8 @@ namespace kdoc
             var typ = new DocType(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
-                kind)
-            {
-                DocXml = TryLoadDocXml(symbol)
-            };
+                kind);
+            typ.MergeXml(TryLoadDocXml(symbol));
             _model.Add(typ);
             _ns.Types.Add(typ);
 
@@ -88,10 +86,8 @@ namespace kdoc
                 return;
             }
 
-            var method = new DocMethod(symbol.GetDocumentationCommentId(), symbol.Name)
-            {
-                DocXml = TryLoadDocXml(symbol)
-            };
+            var method = new DocMethod(symbol.GetDocumentationCommentId(), symbol.Name);
+            method.MergeXml(TryLoadDocXml(symbol));
             _model.Add(method);
             _typ.Members.Add(method);
 
@@ -109,10 +105,8 @@ namespace kdoc
             var evt = new DocEvent(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
-                symbol.Type.GetDocumentationCommentId())
-            {
-                DocXml = TryLoadDocXml(symbol)
-            };
+                symbol.Type.GetDocumentationCommentId());
+            evt.MergeXml(TryLoadDocXml(symbol));
             _typ.Members.Add(evt);
             _model.Add(evt);
         }
@@ -122,10 +116,8 @@ namespace kdoc
             var field = new DocField(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
-                symbol.Type.GetDocumentationCommentId())
-            {
-                DocXml = TryLoadDocXml(symbol)
-            };
+                symbol.Type.GetDocumentationCommentId());
+            field.MergeXml(TryLoadDocXml(symbol));
             _typ.Members.Add(field);
             _model.Add(field);
         }
@@ -135,10 +127,8 @@ namespace kdoc
             var prop = new DocProperty(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
-                symbol.Type.GetDocumentationCommentId())
-            {
-                DocXml = TryLoadDocXml(symbol)
-            };
+                symbol.Type.GetDocumentationCommentId());
+            prop.MergeXml(TryLoadDocXml(symbol));
             _typ.Members.Add(prop);
             _model.Add(prop);
         }
@@ -149,10 +139,8 @@ namespace kdoc
             var parm = new DocParameter(
                 docId,
                 symbol.Name,
-                symbol.Type.GetDocumentationCommentId())
-            {
-                DocXml = TryLoadDocXml(symbol)
-            };
+                symbol.Type.GetDocumentationCommentId());
+            parm.MergeXml(TryLoadDocXml(symbol));
             _met.Parameters.Add(parm);
             _model.Add(parm);
         }
@@ -161,7 +149,7 @@ namespace kdoc
         {
             string xml = symbol.GetDocumentationCommentXml();
             return String.IsNullOrEmpty(xml) ?
-                (XElement)null :
+                null :
                 XElement.Parse(xml);
         }
 
