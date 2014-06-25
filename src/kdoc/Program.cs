@@ -54,6 +54,7 @@ namespace kdoc
             var model = new DocModel();
             var package = new DocPackage("Pk:" + _appEnvironment.ApplicationName, _appEnvironment.ApplicationName);
             model.Packages.Add(package);
+            model.Add(package);
             compilationContext.Compilation.Assembly.Accept(
                 new DocModelBuilder(model, package));
 
