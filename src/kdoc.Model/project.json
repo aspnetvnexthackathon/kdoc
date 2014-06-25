@@ -1,0 +1,18 @@
+﻿{
+    "dependencies": {
+    },
+
+    "configurations" : {
+        "net451" : { 
+            "dependencies": {
+            }
+        },
+        "k10" : { 
+            "dependencies": {
+                "System.Collections": "4.0.0.0",
+                "System.Runtime": "4.0.20.0",
+                "System.Xml.XDocument": "4.0.0.0"
+            }
+        }
+    }
+}

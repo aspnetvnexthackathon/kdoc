@@ -10,8 +10,9 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\AspNet\Microsoft.Web.AspNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>7dc3b456-6be7-412a-98ea-d968967e2d33</ProjectGuid>
-    <OutputType>Web</OutputType>
+    <ProjectGuid>97491b45-123a-464a-a739-ccfb2b1f3d92</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>kdoc.models</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="$(OutputType) == 'Console'">
     <DebuggerFlavor>ConsoleDebugger</DebuggerFlavor>
@@ -24,18 +25,18 @@
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DevelopmentServerPort>63498</DevelopmentServerPort>
-  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Startup.cs" />
+    <Content Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bower.json" />
-    <Content Include="project.json" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Compile Include="DocAssembly.cs" />
+    <Compile Include="DocMember.cs" />
+    <Compile Include="DocMethod.cs" />
+    <Compile Include="DocNamespace.cs" />
+    <Compile Include="DocNode.cs" />
+    <Compile Include="DocPackage.cs" />
+    <Compile Include="DocParameter.cs" />
+    <Compile Include="DocType.cs" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\AspNet\Microsoft.Web.AspNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

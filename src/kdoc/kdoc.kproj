@@ -25,14 +25,6 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Model\DocAssembly.cs" />
-    <Compile Include="Model\DocMember.cs" />
-    <Compile Include="Model\DocMethod.cs" />
-    <Compile Include="Model\DocNamespace.cs" />
-    <Compile Include="Model\DocNode.cs" />
-    <Compile Include="Model\DocPackage.cs" />
-    <Compile Include="Model\DocParameter.cs" />
-    <Compile Include="Model\DocType.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
