@@ -6,9 +6,9 @@ namespace kdoc.Model
     {
         public string DocId { get; private set; }
         public string Name { get; private set; }
-        public string Summary { get; private set; }
-        public string Remarks { get; private set; }
-        public string Examples { get; private set; }
+        public string Summary { get; set; }
+        public string Remarks { get; set; }
+        public string Examples { get; set; }
 
         protected DocNode(string docId, string name)
         {

@@ -1,0 +1,19 @@
+﻿@model kdoc.DocPackage
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    var projectName = Model.Name ?? "[Project Name]";
+    ViewBag.Title = projectName;
+}
+
+<div class="page-header" id="banner">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>@projectName</h1>
+            <p class="lead">@(Model.Summary ?? "[Project Summary]")</p>
+        </div>
+        <div class="col-lg-6" style="padding: 15px 15px 0 15px;">
+            
+        </div>
+    </div>
+</div>

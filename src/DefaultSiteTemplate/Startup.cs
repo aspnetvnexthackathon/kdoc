@@ -9,17 +9,24 @@ namespace DefaultSiteTemplate
     {
         public void Configure(IBuilder app)
         {
+            var hostDocModelProvider = app.ApplicationServices.GetServiceOrDefault<IDocModelProvider>();
+
             app.UseServices(services =>
             {
                 services.AddMvc();
+                                
+                if (hostDocModelProvider == null)
+                {
+                    services.AddSingleton<IDocModelProvider, DesignTimeDocModelProvider>();
+                }
             });
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     "Default",
-                    "{controller}/{action}/{index?}",
-                    new { controller = "Home", action = "Index" }
+                    "",
+                    new { controller = "Docs", action = "Index" }
                 );
             });
         }
