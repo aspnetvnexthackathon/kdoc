@@ -7,14 +7,16 @@ namespace kdoc
 {
     public class DocModelBuilder : SymbolVisitor
     {
+        private DocModel _model;
         private DocPackage _package;
         private DocAssembly _asm;
         private DocNamespace _ns;
         private DocType _typ;
         private DocMethod _met;
 
-        public DocModelBuilder(DocPackage package)
+        public DocModelBuilder(DocModel model, DocPackage package)
         {
+            _model = model;
             _package = package;
         }
 
@@ -35,6 +37,7 @@ namespace kdoc
         {
             var docId = "N:" + symbol.Name;
             var ns = new DocNamespace(docId, symbol.Name);
+            _model.Add(ns);
 
             _asm.Namespaces.Add(ns);
 
@@ -61,6 +64,7 @@ namespace kdoc
             {
                 DocXml = TryLoadDocXml(symbol)
             };
+            _model.Add(typ);
             _ns.Types.Add(typ);
 
             // Visit members
@@ -88,6 +92,7 @@ namespace kdoc
             {
                 DocXml = TryLoadDocXml(symbol)
             };
+            _model.Add(method);
             _typ.Members.Add(method);
 
             var oldMet = _met;
@@ -101,47 +106,55 @@ namespace kdoc
 
         public override void VisitEvent(IEventSymbol symbol)
         {
-            _typ.Members.Add(new DocEvent(
+            var evt = new DocEvent(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
                 symbol.Type.GetDocumentationCommentId())
             {
                 DocXml = TryLoadDocXml(symbol)
-            });
+            };
+            _typ.Members.Add(evt);
+            _model.Add(evt);
         }
 
         public override void VisitField(IFieldSymbol symbol)
         {
-            _typ.Members.Add(new DocField(
+            var field = new DocField(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
                 symbol.Type.GetDocumentationCommentId())
             {
                 DocXml = TryLoadDocXml(symbol)
-            });
+            };
+            _typ.Members.Add(field);
+            _model.Add(field);
         }
 
         public override void VisitProperty(IPropertySymbol symbol)
         {
-            _typ.Members.Add(new DocProperty(
+            var prop = new DocProperty(
                 symbol.GetDocumentationCommentId(),
                 symbol.Name,
                 symbol.Type.GetDocumentationCommentId())
             {
                 DocXml = TryLoadDocXml(symbol)
-            });
+            };
+            _typ.Members.Add(prop);
+            _model.Add(prop);
         }
 
         public override void VisitParameter(IParameterSymbol symbol)
         {
             var docId = "Pa:" + symbol.ContainingSymbol.GetDocumentationCommentId().Substring(2) + "#" + symbol.Ordinal;
-            _met.Parameters.Add(new DocParameter(
+            var parm = new DocParameter(
                 docId,
                 symbol.Name,
                 symbol.Type.GetDocumentationCommentId())
             {
                 DocXml = TryLoadDocXml(symbol)
-            });
+            };
+            _met.Parameters.Add(parm);
+            _model.Add(parm);
         }
 
         private XElement TryLoadDocXml(ISymbol symbol)

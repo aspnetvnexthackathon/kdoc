@@ -19,7 +19,7 @@ namespace SampleLib
         /// <summary>
         /// Creates a new SuperUsefulThing.
         /// </summary>
-            public SuperUsefulThing()
+        public SuperUsefulThing()
         {
             Salutation = "Hello";
         }

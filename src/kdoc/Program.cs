@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using kdoc.Model;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.Framework.Runtime;
-using Microsoft.Framework.ConfigurationModel;
-using System.IO;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.AspNet.TestHost;
 using Microsoft.Framework.DependencyInjection.Fallback;
@@ -61,16 +57,18 @@ namespace kdoc
             var result = await value.ReadBodyAsStringAsync();
             Console.WriteLine(result);
         }
-        private DocPackage BuildDocModel()
+        private DocModel BuildDocModel()
         {
             var compiler = new RoslynCompiler(_resolver, NoopWatcher.Instance, _exportProvider);
             var compilationContext = compiler.CompileProject(_appEnvironment.ApplicationName, _appEnvironment.TargetFramework);
 
+            var model = new DocModel();
             var package = new DocPackage("P:" + _appEnvironment.ApplicationName, _appEnvironment.ApplicationName);
+            model.Packages.Add(package);
             compilationContext.Compilation.Assembly.Accept(
-                new DocModelBuilder(package));
+                new DocModelBuilder(model, package));
 
-            return package;
+            return model;
         }
     }
 }

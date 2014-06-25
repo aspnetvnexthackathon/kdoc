@@ -26,6 +26,7 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="DocNode.cs.orig" />
     <Content Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +34,7 @@
     <Compile Include="DocEvent.cs" />
     <Compile Include="DocMember.cs" />
     <Compile Include="DocMethod.cs" />
+    <Compile Include="DocModel.cs" />
     <Compile Include="DocNamespace.cs" />
     <Compile Include="DocNode.cs" />
     <Compile Include="DocPackage.cs" />
