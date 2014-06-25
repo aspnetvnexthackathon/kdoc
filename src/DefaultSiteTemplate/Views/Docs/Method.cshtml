@@ -20,7 +20,7 @@
             <ul>
                 @foreach (var p in Model.Parameters)
                 {
-                <li><a href="@DocUrlHelper.Url(a.DocId)">@p.Name</a></li>
+                <li><a href="@DocUrlHelper.Url(p.Type)">@p.Type</a> @p.Name</li>
                 }
             </ul>
         </div>

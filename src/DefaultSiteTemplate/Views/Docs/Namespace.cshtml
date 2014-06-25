@@ -18,9 +18,9 @@
         <div class="col-lg-6">
             <h2>Types</h2>
             <ul>
-                @foreach (var types in Model.Types)
+                @foreach (var t in Model.Types)
                 {
-                <li><a href="@DocUrlHelper.Url(a.DocId)">@types.Name</a></li>
+                <li><a href="@DocUrlHelper.Url(t.DocId)">@t.Name</a></li>
                 }
             </ul>
         </div>

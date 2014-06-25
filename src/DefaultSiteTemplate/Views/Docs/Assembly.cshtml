@@ -20,7 +20,7 @@
             <ul>
                 @foreach (var ns in Model.Namespaces)
                 {
-                <li><a href="@DocUrlHelper.Url(a.DocId)">@ns.Name</a></li>
+                <li><a href="@DocUrlHelper.Url(ns.DocId)">@ns.Name</a></li>
                 }
             </ul>
         </div>

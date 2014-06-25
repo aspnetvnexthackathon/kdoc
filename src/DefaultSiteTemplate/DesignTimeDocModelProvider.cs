@@ -33,6 +33,8 @@ namespace DefaultSiteTemplate
                 Summary = "A sample summary for the method."
             };
 
+            sampleMethod.Parameters.Add(new DocParameter("Pa:SamplePackage.SampleAssembly.SampleClass.SampleMethod(System.String)#0", "sampleParameter", "T:System.String"));
+
             var sampleProperty = new DocProperty("P:SamplePackage.SampleAssembly.SampleClass.SampleProperty", "SampleProperty", "System.String")
             {
                 Summary = "A sample summary for the property."
@@ -73,6 +75,10 @@ namespace DefaultSiteTemplate
             else if (string.Equals(docId, _samplePackage.Value.Assemblies.First().Namespaces.First().Types.First().Members.First().DocId, StringComparison.OrdinalIgnoreCase))
             {
                 return _samplePackage.Value.Assemblies.First().Namespaces.First().Types.First().Members.First();
+            }
+            else if (string.Equals(docId, _samplePackage.Value.Assemblies.First().Namespaces.First().Types.First().Members.Skip(1).First().DocId, StringComparison.OrdinalIgnoreCase))
+            {
+                return _samplePackage.Value.Assemblies.First().Namespaces.First().Types.First().Members.Skip(1).First();
             }
 
             return null;
