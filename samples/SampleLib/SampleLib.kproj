@@ -11,7 +11,7 @@
   <Import Project="$(VSToolsPath)\AspNet\Microsoft.Web.AspNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
     <ProjectGuid>dbfc6581-1c7f-44aa-9ca4-9e1c085b923c</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Console</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition="$(OutputType) == 'Console'">
     <DebuggerFlavor>ConsoleDebugger</DebuggerFlavor>
