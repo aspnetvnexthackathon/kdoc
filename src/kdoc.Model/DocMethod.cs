@@ -7,7 +7,7 @@ namespace kdoc
     {
         public ICollection<DocParameter> Parameters { get; private set; }
 
-        public DocMethod(string name) : base(name)
+        public DocMethod(string name) : base(name, DocMemberKind.Method)
         {
             Parameters = new List<DocParameter>();
         }

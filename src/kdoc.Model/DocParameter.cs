@@ -1,8 +1,12 @@
 ﻿namespace kdoc
 {
-    public class DocParameter
+    public class DocParameter : DocNode
     {
-        public string Name { get; private set; }
         public string Type { get; private set; }
+
+        public DocParameter(string name, string type) : base(name)
+        {
+            Type = type;
+        }
     }
 }

@@ -2,14 +2,12 @@
 
 namespace kdoc
 {
-    public class DocNamespace
+    public class DocNamespace : DocNode
     {
-        public string Name { get; private set; }
         public ICollection<DocType> Types { get; private set; }
 
-        public DocNamespace(string name)
+        public DocNamespace(string name) : base(name)
         {
-            Name = name;
             Types = new List<DocType>();
         }
     }

@@ -2,14 +2,14 @@
 
 namespace kdoc
 {
-    public class DocType : DocNode
+    public class DocType : DocMember
     {
-        public DocTypeKind Kind { get; private set; }
+        public DocTypeKind TypeKind { get; private set; }
         public ICollection<DocMember> Members { get; private set; }
 
-        public DocType(string name, DocTypeKind kind) : base(name)
+        public DocType(string name, DocTypeKind typeKind) : base(name, DocMemberKind.Type)
         {
-            Kind = kind;
+            TypeKind = typeKind;
             Members = new List<DocMember>();
         }
     }
