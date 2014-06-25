@@ -384,6 +384,8 @@
     <Content Include="bower_components\respond\src\matchmedia.addListener.js" />
     <Content Include="bower_components\respond\src\matchmedia.polyfill.js" />
     <Content Include="bower_components\respond\src\respond.js" />
+    <Content Include="css\bootswatch.min.css" />
+    <Content Include="css\bootswatch.readable.css" />
     <Content Include="project.json" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

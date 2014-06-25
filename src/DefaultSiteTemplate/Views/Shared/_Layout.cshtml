@@ -1,14 +1,58 @@
 ﻿<!doctype html>
-<html>
+<html lang="en">
 <head>
-    <title>kdoc</title>
+    <title>@ViewBag.Title</title>
+    <link href="~/css/bootswatch.min.css" rel="stylesheet" />
+    <link href="~/css/bootswatch.readable.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Default kdoc Site Template</h1>
-    <p>
-        Hi there! This has worked.
-    </p>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="../" class="navbar-brand">@ViewBag.Title</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Versions <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes">
+                            <li><a href="">Current (whatever)</a></li>
+                            <li class="divider"></li>
+                            <li><a href="">TODO: Older versions</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../api/">API Reference</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="devguide">Developer Guide <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="devguide">
+                            <li><a href="">Article #1</a></li>
+                            <li><a href="">Article #2</a></li>
+                            <li><a href="">etc.</a></li>
+                        </ul>
+                    </li>
+                </ul>
 
-    @RenderBody()
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://github.com/aspnetvnexthackathon/kdoc/" target="_blank">Built With kdoc</a></li>
+                    <li><a href="https://github.com/aspnet/" target="_blank">ASP.NET</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
