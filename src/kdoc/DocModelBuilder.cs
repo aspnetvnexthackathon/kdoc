@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 using kdoc.Model;
 using Microsoft.CodeAnalysis;
@@ -73,6 +74,37 @@ namespace kdoc
                 member.Accept(this);
             }
             _typ = oldTyp;
+
+            // Group up overloaded methods
+            var methodGroups = typ
+                .Members
+                .Where(m => m.MemberKind == DocMemberKind.Method)
+                .Cast<DocMethod>()
+                .GroupBy(m => m.Name);
+            foreach (var methodGroup in methodGroups)
+            {
+                var overloads = methodGroup.ToList();
+                if (overloads.Count > 1)
+                {
+                    var overloadId = overloads.First().DocId;
+                    int parenStart = overloadId.IndexOf('(');
+                    var setId = parenStart < 0 ?
+                        overloadId.Substring(2) :
+                        overloadId.Substring(2, parenStart - 2);
+                    // Build a method set
+                    var set = new DocMethodSet(
+                        "Ms:" + setId,
+                        methodGroup.Key);
+                    foreach (var method in overloads)
+                    {
+                        set.Overloads.Add(method);
+                        typ.Members.Remove(method);
+                    }
+
+                    _model.Add(set);
+                    typ.Members.Add(set);
+                }
+            }
         }
 
         public override void VisitMethod(IMethodSymbol symbol)

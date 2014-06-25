@@ -12,6 +12,7 @@ namespace kdoc.Model
         public string Remarks { get; set; }
         public string Examples { get; set; }
         public XElement DocXml { get; private set; }
+        public DocNode Parent { get; set; }
 
         protected DocNode(string docId, string name)
         {
@@ -22,6 +23,11 @@ namespace kdoc.Model
         public void MergeXml(XElement docXml)
         {
             DocXml = docXml;
+
+            if (docXml == null)
+            {
+                return;
+            }
 
             var summary = docXml.Descendants(XName.Get("summary")).FirstOrDefault();
             if (summary != null)

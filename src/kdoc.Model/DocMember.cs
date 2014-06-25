@@ -14,6 +14,7 @@
     {
         Property,
         Method,
+        MethodSet,
         Field,
         Event,
         Type

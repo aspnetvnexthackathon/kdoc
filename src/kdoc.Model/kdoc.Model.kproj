@@ -33,6 +33,7 @@
     <Compile Include="DocEvent.cs" />
     <Compile Include="DocMember.cs" />
     <Compile Include="DocMethod.cs" />
+    <Compile Include="DocMethodSet.cs" />
     <Compile Include="DocModel.cs" />
     <Compile Include="DocNamespace.cs" />
     <Compile Include="DocNode.cs" />
