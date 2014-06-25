@@ -1,5 +1,5 @@
 ﻿using System;
-using kdoc;
+using kdoc.Model;
 using Microsoft.AspNet.Mvc;
 
 namespace DefaultSiteTemplate
@@ -16,14 +16,6 @@ namespace DefaultSiteTemplate
         public ActionResult Index(string docId = "SamplePackage", string templateName = "Index")
         {
             return View(templateName, _docModelProvider.GetDocModel(docId));
-        }
-
-        private static DocPackage CreateDummyModel()
-        {
-            return new DocPackage("[Project Name]")
-            {
-                Summary = "[Package Summary]"
-            };
         }
     }
 }

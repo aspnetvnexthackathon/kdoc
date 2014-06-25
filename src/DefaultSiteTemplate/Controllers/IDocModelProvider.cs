@@ -1,4 +1,4 @@
-﻿using kdoc;
+﻿using kdoc.Model;
 using Microsoft.Framework.Runtime;
 
 namespace DefaultSiteTemplate

@@ -1,5 +1,5 @@
 ﻿using System;
-using kdoc;
+using kdoc.Model;
 
 namespace DefaultSiteTemplate
 {
@@ -9,7 +9,7 @@ namespace DefaultSiteTemplate
         {
             if (string.Equals(docId, "SamplePackage"))
             {
-                return new DocPackage("Sample Package Name")
+                return new DocPackage(docId, "Sample Package Name")
                 {
                     Summary = "A sample summary for the package"
                 };
