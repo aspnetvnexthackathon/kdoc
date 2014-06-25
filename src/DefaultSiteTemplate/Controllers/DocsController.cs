@@ -13,7 +13,7 @@ namespace DefaultSiteTemplate
             _docModelProvider = docModelProvider;
         }
 
-        public ActionResult Index(string docId = "SamplePackage", string templateName = "Index")
+        public ActionResult Index(string docId = "SamplePackage", string templateName = "Package")
         {
             return View(templateName, _docModelProvider.GetDocModel(docId));
         }

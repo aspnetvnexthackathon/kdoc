@@ -389,7 +389,7 @@
     <Content Include="css\bootswatch.min.css" />
     <Content Include="css\bootswatch.readable.css" />
     <Content Include="project.json" />
-    <Content Include="Views\Docs\Index.cshtml" />
+    <Content Include="Views\Docs\Package.cshtml" />
     <Content Include="Views\Docs\Method.cshtml" />
     <Content Include="Views\Docs\MethodSummary.cshtml" />
     <Content Include="Views\Docs\Type.cshtml" />
