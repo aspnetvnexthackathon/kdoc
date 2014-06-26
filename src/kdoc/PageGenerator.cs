@@ -40,6 +40,7 @@ namespace kdoc
             var serviceProvider = new ServiceCollection()
                                         .AddInstance<IApplicationEnvironment>(env)
                                         .AddInstance<IDocModelProvider>(new DocModelProvider(model))
+                                        .AddInstance<IDocUrlBuilder>(new DocUrlBuilder())
                                         .BuildServiceProvider(hostServiceProvider);
 
             var startup = new DefaultSiteTemplate.Startup();
