@@ -27,6 +27,7 @@ namespace kdoc
             var asm = new DocAssembly(docId, symbol.Name);
 
             _package.Assemblies.Add(asm);
+            _model.Add(asm);
             asm.Parent = _package;
 
             var oldAsm = _asm;
