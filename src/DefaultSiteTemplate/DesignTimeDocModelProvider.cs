@@ -38,7 +38,7 @@ namespace DefaultSiteTemplate
                 Summary = "A sample summary for the method."
             };
 
-            var sampleMethodOverload1 = new DocMethod("M:SamplePackage.SampleAssembly.SampleClass.SampleMethod(System.String)", "SampleMethod")
+            var sampleMethodOverload1 = new DocMethod("M:SamplePackage.SampleAssembly.SampleClass.SampleMethod(System.String)", "SampleMethod(System.String name)")
             {
                 Summary = "A sample summary for the method."
             };
