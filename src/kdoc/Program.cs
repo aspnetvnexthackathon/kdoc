@@ -38,7 +38,7 @@ namespace kdoc
             // Build the model here
             var model = BuildDocModel();
 
-            string outputPath = Path.Combine(_appEnvironment.ApplicationBasePath, "docs");
+            string outputPath = Path.Combine(_appEnvironment.ApplicationBasePath, "bin", "docs");
 
             var pageGenerator = new PageGenerator(model, _serviceProvider, _libraryManager, _appEnvironment);
             await pageGenerator.GenerateSite(outputPath);
