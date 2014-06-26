@@ -8,7 +8,7 @@ namespace DefaultSiteTemplate
     {
         private readonly Lazy<DocPackage> _samplePackage = new Lazy<DocPackage>(() =>
         {
-            var package = new DocPackage("P:SamplePackage", "Sample Package Name")
+            var package = new DocPackage("Pk:SamplePackage", "Sample Package Name")
             {
                 Summary = "A sample summary for the package."
             };

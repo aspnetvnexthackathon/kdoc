@@ -29,8 +29,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controllers\DocsController.cs" />
-    <Compile Include="Controllers\IDocModelProvider.cs" />
     <Compile Include="DesignTimeDocModelProvider.cs" />
+    <Compile Include="DesignTimeDocUrlBuilder.cs" />
+    <Compile Include="IDocModelProvider.cs" />
+    <Compile Include="IDocUrlBuilder.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

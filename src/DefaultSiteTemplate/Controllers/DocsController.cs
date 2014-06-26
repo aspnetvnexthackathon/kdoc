@@ -1,4 +1,5 @@
 ﻿using System;
+using kdoc.Model;
 using Microsoft.AspNet.Mvc;
 
 namespace DefaultSiteTemplate
@@ -12,7 +13,7 @@ namespace DefaultSiteTemplate
             _docModelProvider = docModelProvider;
         }
 
-        public ActionResult Index(string docId = "P:SamplePackage", string templateName = "Package")
+        public ActionResult Index(string docId = "Pk:SamplePackage", string templateName = "Package")
         {
             return View(templateName, _docModelProvider.GetDocModel(docId));
         }
