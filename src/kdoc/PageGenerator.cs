@@ -18,6 +18,8 @@ namespace kdoc
         private readonly TestClient _client;
         private readonly DocModel _model;
 
+        private readonly string _templatePath;
+
         public PageGenerator(DocModel model,
                              IServiceProvider hostServiceProvider,
                              ILibraryManager libraryManager,
@@ -32,6 +34,8 @@ namespace kdoc
             env.ApplicationBasePath = Path.GetDirectoryName(defaultSite.Path);
             env.ApplicationName = defaultSite.Name;
             env.TargetFramework = appEnv.TargetFramework;
+
+            _templatePath = env.ApplicationBasePath;
 
             var serviceProvider = new ServiceCollection()
                                         .AddInstance<IApplicationEnvironment>(env)
@@ -52,6 +56,22 @@ namespace kdoc
                 await Write(outputPath, package);
             }
 
+            CopyCss(outputPath);
+        }
+
+        private void CopyCss(string outputPath)
+        {
+            var files = Directory.EnumerateFiles(
+                Path.Combine(_templatePath, "css"), "*.*");
+
+            foreach (var file in files)
+            {
+                string target = Path.Combine(outputPath, "css", Path.GetFileName(file));
+                Directory.CreateDirectory(Path.GetDirectoryName(target));
+                File.Copy(file, target, true);
+
+                Console.WriteLine(target);
+            }
         }
 
         private async Task Write(string outputPath, DocNode node)
@@ -75,6 +95,12 @@ namespace kdoc
                 await WriteNamespace(outputPath, docNamespace);
             }
 
+            if (node is DocType)
+            {
+                var docType = node as DocType;
+                await WriteType(outputPath, docType);
+            }
+
             if (node is DocMember)
             {
                 var member = node as DocMember;
@@ -84,7 +110,12 @@ namespace kdoc
 
         private async Task WriteNamespace(string path, DocNamespace docNamespace)
         {
-            await WritePage(Path.Combine(path, docNamespace.Name + ".html"), docNamespace, "Namespace");
+            if (docNamespace.Types.Count == 0)
+            {
+                return;
+            }
+
+            await WritePage(MakePath(path, docNamespace), docNamespace, "Namespace");
 
             foreach (var type in docNamespace.Types)
             {
@@ -92,14 +123,36 @@ namespace kdoc
             }
         }
 
+        private async Task WriteType(string path, DocType docType)
+        {
+            await WritePage(MakePath(path, docType), docType, docType.TypeKind.ToString());
+
+            foreach (var member in docType.Members)
+            {
+                await Write(Path.Combine(path, docType.Name), member);
+            }
+        }
+
+
         private async Task WriteMember(string path, DocMember member)
         {
-           
+            await WritePage(MakePath(path, member), member, member.MemberKind.ToString());
+        }
+
+        private static string MakePath(string path, DocNode node)
+        {
+            string name = node.Name;
+            foreach (var c in Path.GetInvalidFileNameChars())
+            {
+                name = name.Replace(c, '_');
+            }
+
+            return Path.Combine(path, name + ".html");
         }
 
         private async Task WriteAssembly(string path, DocAssembly assembly)
         {
-            await WritePage(Path.Combine(path, assembly.Name + ".html"), assembly, "Assembly");
+            await WritePage(MakePath(path, assembly), assembly, "Assembly");
 
             foreach (var ns in assembly.Namespaces)
             {
@@ -109,7 +162,7 @@ namespace kdoc
 
         private async Task WritePackage(string path, DocPackage package)
         {
-            await WritePage(Path.Combine(path, package.Name + ".html"), package, "Package");
+            await WritePage(MakePath(path, package), package, "Package");
 
             foreach (var assembly in package.Assemblies)
             {
@@ -128,7 +181,14 @@ namespace kdoc
 
         public async Task<string> CallTemplate(string docId, string template)
         {
-            return await _client.GetStringAsync("http://localhost/?docId=" + docId + "&templateName=" + template);
+            try
+            {
+                return await _client.GetStringAsync("http://localhost/?docId=" + docId + "&templateName=" + template);
+            }
+            catch (Exception ex)
+            {
+                return "<h1>Failed to generate doc for " + docId + "</h1> <pre>" + ex + "</pre>";
+            }
         }
     }
 }
