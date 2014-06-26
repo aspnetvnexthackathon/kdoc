@@ -3,7 +3,6 @@
 
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = Model.Name;
     var urlBuilder = (DefaultSiteTemplate.IDocUrlBuilder)Context.RequestServices.GetService(typeof(DefaultSiteTemplate.IDocUrlBuilder));
 }
 

@@ -53,13 +53,20 @@ namespace DefaultSiteTemplate
                 Summary = "A sample summary for the event."
             };
 
+            sampleMethodOverload0.Parent = sampleMethodSet;
             sampleMethodOverload1.Parameters.Add(new DocParameter("Pa:SamplePackage.SampleAssembly.SampleClass.SampleMethod(System.String)#0", "sampleParameter", "T:System.String"));
+            sampleMethodOverload1.Parent = sampleMethodSet;
             sampleMethodSet.Overloads.Add(sampleMethodOverload0);
             sampleMethodSet.Overloads.Add(sampleMethodOverload1);
+            sampleMethodSet.Parent = sampleClass;
+            sampleProperty.Parent = sampleClass;
             sampleClass.Members.Add(sampleMethodSet);
             sampleClass.Members.Add(sampleProperty);
+            sampleClass.Parent = sampleNs;
             sampleNs.Types.Add(sampleClass);
+            sampleNs.Parent = assembly;
             assembly.Namespaces.Add(sampleNs);
+            assembly.Parent = package;
             package.Assemblies.Add(assembly);
 
             return package;
