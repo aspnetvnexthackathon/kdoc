@@ -29,13 +29,16 @@ namespace DefaultSiteTemplate
                 case "P":
                     return "Property";
 
+                case "MS":
+                    return "MethodSet";
+
                 case "M":
                     return "Method";
 
                 case "E":
                     return "Event";
 
-                case "Pk":
+                case "PK":
                 default:
                     return "Package";
             }

@@ -396,6 +396,7 @@
     <Content Include="Views\Docs\Enum.cshtml" />
     <Content Include="Views\Docs\Field.cshtml" />
     <Content Include="Views\Docs\Event.cshtml" />
+    <Content Include="Views\Docs\MethodSet.cshtml" />
     <Content Include="Views\Docs\Property.cshtml" />
     <Content Include="Views\Docs\Namespace.cshtml" />
     <Content Include="Views\Docs\Package.cshtml" />

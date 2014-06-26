@@ -1,5 +1,5 @@
 ﻿@using kdoc.Model
-@model DocMethod
+@model DocMethodSet
 
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
@@ -17,16 +17,13 @@
 
     <div class="row">
         <div class="col-lg-6">
-            @if (Model.Parameters.Count > 0)
-            {
-            <h2>Parameters</h2>
+            <h2>Overloads</h2>
             <ul>
-                @foreach (var p in Model.Parameters)
+                @foreach (var o in Model.Overloads)
                 {
-                <li><a href="@urlBuilder.Url(p.Type)">@p.Type</a> @p.Name</li>
+                <li><a href="@urlBuilder.Url(o.DocId)">@o.Name</a></li>
                 }
             </ul>
-            }
         </div>
     </div>
 </div>
